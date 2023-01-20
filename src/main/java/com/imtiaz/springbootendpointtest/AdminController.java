@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 
-  @GetMapping
-  public String getAdminView(Model model) {
-
-    model.addAttribute("message", "Top Secret!");
-
-    return "admin";
-  }
+    @GetMapping
+    public String getAdminView(Model model) {
+        model.addAttribute("message", "Top Secret!");
+        return "admin";
+    }
 }

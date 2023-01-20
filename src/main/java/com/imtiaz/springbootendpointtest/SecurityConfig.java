@@ -9,18 +9,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-  @Bean
-  public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.authorizeRequests(
-        authorize ->
-          authorize.mvcMatchers("/customers").permitAll()
-            .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-            .anyRequest().authenticated()
-      )
-      .formLogin()
-      .and()
-      .csrf();
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests(
+                        authorize ->
+                                authorize.mvcMatchers("/customers").permitAll()
+                                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                        .anyRequest().authenticated()
+                )
+                .formLogin()
+                .and()
+                .csrf();
 
-    return httpSecurity.build();
-  }
+        return httpSecurity.build();
+    }
 }

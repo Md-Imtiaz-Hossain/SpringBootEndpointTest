@@ -5,37 +5,37 @@ import javax.validation.constraints.NotEmpty;
 
 public class CustomerFormObject {
 
-  @NotEmpty
-  private String name;
+    @NotEmpty
+    private String name;
 
-  @NotEmpty
-  private String number;
+    @NotEmpty
+    private String number;
 
-  @Email
-  @NotEmpty
-  private String email;
+    @Email
+    @NotEmpty
+    private String email;
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getNumber() {
-    return number;
-  }
+    public String getNumber() {
+        return number;
+    }
 
-  public void setNumber(String number) {
-    this.number = number;
-  }
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
