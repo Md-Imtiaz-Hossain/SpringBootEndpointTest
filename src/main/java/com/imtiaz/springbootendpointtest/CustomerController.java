@@ -16,41 +16,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/customers")
 public class CustomerController {
 
-  private static final List<Customer> CUSTOMERS = new ArrayList<>();
+    private static final List<Customer> CUSTOMERS = new ArrayList<>();
 
-  @GetMapping
-  public String getCustomerView(Model model) {
-
-    model.addAttribute("customerFormObject", new CustomerFormObject());
-    model.addAttribute("customers", CUSTOMERS);
-
-    return "customers";
-  }
-
-  @PostMapping
-  public String createCustomer(
-    @Valid CustomerFormObject customerFormObject,
-    BindingResult bindingResult,
-    Model model) {
-
-    if (bindingResult.hasErrors()) {
-      model.addAttribute("customers", CUSTOMERS);
-      return "customers";
+    @GetMapping
+    public String getCustomerView(Model model) {
+        model.addAttribute("customerFormObject", new CustomerFormObject());
+        model.addAttribute("customers", CUSTOMERS);
+        return "customers";
     }
 
-    CUSTOMERS.add(Customer.from(customerFormObject));
+    @PostMapping
+    public String createCustomer(@Valid CustomerFormObject customerFormObject, BindingResult bindingResult, Model model) {
 
-    return "redirect:/customers";
-  }
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("customers", CUSTOMERS);
+            return "customers";
+        }
 
-  public record Customer(
-    String name,
-    String number,
-    String email,
-    LocalDateTime createdAt) {
-
-    public static Customer from(CustomerFormObject customerFormObject) {
-      return new Customer(customerFormObject.getName(), customerFormObject.getNumber(), customerFormObject.getEmail(), LocalDateTime.now());
+        CUSTOMERS.add(Customer.from(customerFormObject));
+        return "redirect:/customers";
     }
-  }
+
+    public record Customer(String name, String number, String email, LocalDateTime createdAt) {
+        public static Customer from(CustomerFormObject customerFormObject) {
+            return new Customer(customerFormObject.getName(), customerFormObject.getNumber(), customerFormObject.getEmail(), LocalDateTime.now());
+        }
+    }
 }
